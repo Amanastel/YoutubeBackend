@@ -40,6 +40,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
     // check for images, check for avatar
     const avatarLocalPath = req.files?.avatar[0]?.path;
+    console.log("avatarLocalPath: ", avatarLocalPath);
     //const coverImageLocalPath = req.files?.coverImage[0]?.path;
 
 
@@ -64,7 +65,7 @@ const registerUser = asyncHandler(async (req, res) => {
     // create user object - create entry in db
     const user = await User.create({
         fullName,
-        avatar: avatar.url,
+        avatar: avatar.url || "",
         coverImage: coverImage?.url || "",
         email, 
         password,
